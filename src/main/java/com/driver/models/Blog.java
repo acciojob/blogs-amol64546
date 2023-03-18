@@ -16,7 +16,7 @@ public class Blog {
     private String title;
     private String content;
 
-    @CreationTimestamp
+//    @CreationTimestamp
     private Date pubDate;
 
     @ManyToOne
@@ -27,13 +27,11 @@ public class Blog {
     private List<Image> imageList = new ArrayList<>();
 
     public Blog(){};
-    public Blog(String title, String content,User user) {
 
+    public Blog(String title, String content, Date pubDate) {
         this.title = title;
         this.content = content;
-
-        this.user = user;
-
+        this.pubDate = pubDate;
     }
 
     public int getId() {

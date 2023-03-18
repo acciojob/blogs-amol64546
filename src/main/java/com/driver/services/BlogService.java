@@ -21,17 +21,16 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content) throws Exception{
+    public Blog createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
-        User user;
-        try {
-            user = userRepository1.findById(userId).get();
-        }catch (Exception e){
-            throw new Exception("User does not exists");
-        }
+        User user =  user = userRepository1.findById(userId).get();
 
+        Blog blog = new Blog();
+        blog.setContent(content);
+        blog.setTitle(title);
+        blog.setPubDate(new Date());
+        blog.setUser(user);
 
-        Blog blog = new Blog(title,content,user);
         user.getBlogList().add(blog);
         userRepository1.save(user);
 
